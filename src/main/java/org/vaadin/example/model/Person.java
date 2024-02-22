@@ -1,7 +1,5 @@
 package org.vaadin.example.model;
 
-import javax.annotation.Nonnull;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -10,9 +8,7 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Person {
 
-	@Nonnull
 	private String name;
-	@Nonnull
 	private int birth;
 
 	public Person() {
