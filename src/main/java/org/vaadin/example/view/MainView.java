@@ -1,9 +1,5 @@
 package org.vaadin.example.view;
 
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 import org.vaadin.example.model.Person;
 import org.vaadin.example.openfeign.PersonClient;
 
@@ -42,7 +38,6 @@ public class MainView extends VerticalLayout {
 		g.addColumn(o -> Integer.toString(o.getBirth())).setHeader("Year of birth");
 		g.setSelectionMode(SelectionMode.SINGLE);
         val main = new HorizontalLayout(g);
-        
         main.setSizeFull();
         get();
         add(toolbar, main);
