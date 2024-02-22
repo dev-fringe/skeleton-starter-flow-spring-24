@@ -1,0 +1,3 @@
+:host([theme~="label-padding"]) [part="label"] {
+    padding-bottom: 1px;
+}
