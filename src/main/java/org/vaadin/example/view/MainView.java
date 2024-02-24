@@ -1,5 +1,7 @@
 package org.vaadin.example.view;
 
+import java.io.InputStream;
+
 import org.vaadin.example.model.Person;
 import org.vaadin.example.openfeign.PersonClient;
 
@@ -11,6 +13,8 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 import com.vaadin.flow.router.Route;
 
 import lombok.val;
@@ -24,6 +28,14 @@ public class MainView extends VerticalLayout {
 	PersonClient p;
 
     public MainView(final PersonClient p) {
+    	MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
+    	Upload upload = new Upload(buffer);
+    	upload.addSucceededListener(event -> {
+    	    String fileName = event.getFileName();
+    	    InputStream inputStream = buffer.getInputStream(fileName);
+    	    System.out.println(fileName);
+    	});
+    	
     	this.p = p;
         val b = new Button("Search new person");
         b.addClickListener(e -> {
@@ -59,7 +71,7 @@ public class MainView extends VerticalLayout {
         val main = new HorizontalLayout(g);
         main.setSizeFull();
         get();
-        add(new HorizontalLayout(t, b,dialog, button), main);
+        add(new HorizontalLayout(t, b,upload,dialog, button), main);
     }
 
     void get() {
