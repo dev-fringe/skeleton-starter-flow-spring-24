@@ -12,6 +12,7 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.richtexteditor.RichTextEditor;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
@@ -82,6 +83,8 @@ public class MainView extends VerticalLayout {
     TextField lastNameField = new TextField("Last name");
 
     private  VerticalLayout createDialogLayout() {
+//    	RichTextEditor rte = new RichTextEditor();
+//    	rte.setMaxHeight("400px");// liecense
         VerticalLayout dialogLayout = new VerticalLayout(firstNameField,
                 lastNameField);
         dialogLayout.setPadding(false);
