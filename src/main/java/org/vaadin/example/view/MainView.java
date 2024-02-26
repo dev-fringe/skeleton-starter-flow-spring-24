@@ -2,9 +2,12 @@ package org.vaadin.example.view;
 
 import java.io.InputStream;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.vaadin.example.model.Person;
 import org.vaadin.example.openfeign.PersonClient;
 
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -12,12 +15,12 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.richtexteditor.RichTextEditor;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
 import com.vaadin.flow.router.Route;
 
+import lombok.SneakyThrows;
 import lombok.val;
 
 @Route
@@ -82,12 +85,16 @@ public class MainView extends VerticalLayout {
     TextField firstNameField = new TextField("First name");
     TextField lastNameField = new TextField("Last name");
 
+    @SneakyThrows
     private  VerticalLayout createDialogLayout() {
 //    	RichTextEditor rte = new RichTextEditor();
 //    	rte.setMaxHeight("400px");// liecense
+    	Document doc = Jsoup.connect("http://localhost/page1").get();
+    	System.out.println(doc.toString());
+    	Html html = new Html(doc.toString());
         VerticalLayout dialogLayout = new VerticalLayout(firstNameField,
-                lastNameField);
-        dialogLayout.setPadding(false);
+                lastNameField, html);
+        dialogLayout.setPadding(false); 
         dialogLayout.setSpacing(false);
         dialogLayout.setAlignItems(FlexComponent.Alignment.STRETCH);
         dialogLayout.getStyle().set("width", "18rem").set("max-width", "100%");
