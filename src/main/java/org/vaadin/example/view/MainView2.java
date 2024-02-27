@@ -16,27 +16,27 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.History;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MultiFileMemoryBuffer;
-import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 
 import lombok.SneakyThrows;
 import lombok.val;
 
-@PageTitle("Raspberry Pi Board Information")
-@Route(value = "/app", layout = BaseLayout.class)
-@RouteAlias(value = "", layout = BaseLayout.class)
-public class MainView extends VerticalLayout {
+@SuppressWarnings("serial")
+@Route(value = "/data", layout = BaseLayout.class)
+@RouteAlias(value = "/data", layout = BaseLayout.class)
+public class MainView2 extends VerticalLayout {
 
 	TextField t = new TextField();
 	Grid<Person> g = new Grid<>();
 	PersonClient p;
 
-    public MainView(final PersonClient p) {
-    	 UI currentUI = UI.getCurrent();
+    public MainView2(final PersonClient p) {
+    	History history = UI.getCurrent().getPage().getHistory();
     	MultiFileMemoryBuffer buffer = new MultiFileMemoryBuffer();
     	Upload upload = new Upload(buffer);
     	upload.addSucceededListener(event -> {
@@ -69,13 +69,9 @@ public class MainView extends VerticalLayout {
         dialog.getFooter().add(deleteButton);
 
         Button button = new Button("Show dialog", e -> dialog.open());
-
-        Button page = new Button("page", e -> {
-        	 currentUI.access(() -> {
-                 currentUI.navigate(MainView2.class);
-          });
-        });
-        
+        Button button1 = new Button();
+        button1.setText("Go back");
+        button1.addClickListener(e-> history.back());
 		g.addColumn(Person::getName).setSortable(true).setHeader("Name");
 		g.addColumn(o -> Integer.toString(o.getBirth())).setSortable(true).setHeader("Year of birth");
 		g.addItemDoubleClickListener(e ->{
@@ -86,7 +82,7 @@ public class MainView extends VerticalLayout {
         val main = new HorizontalLayout(g);
         main.setSizeFull();
         get();
-        add(new HorizontalLayout(t, b,upload,dialog, button, page), main);
+        add(new HorizontalLayout(t, b,upload,dialog, button, button1), main);
     }
 
     void get() {

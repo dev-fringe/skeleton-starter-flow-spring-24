@@ -8,11 +8,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.server.PWA;
+import com.vaadin.flow.theme.Theme;
 
 @SpringBootApplication
 @Configuration
 //@EnableAsync
 @EnableFeignClients
+@Theme(value = "my-theme")
+@PWA(name = "My App", shortName = "My App", offlineResources = {})
 public class Application implements AppShellConfigurator {
 
 	@Bean 
