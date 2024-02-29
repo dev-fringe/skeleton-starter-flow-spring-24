@@ -1,4 +1,4 @@
-package org.vaadin.example.openfeign;
+package org.vaadin.example.client;
 
 import java.util.List;
 

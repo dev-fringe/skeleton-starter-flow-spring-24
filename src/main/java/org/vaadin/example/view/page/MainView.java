@@ -1,11 +1,12 @@
-package org.vaadin.example.view;
+package org.vaadin.example.view.page;
 
 import java.io.InputStream;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.vaadin.example.client.PersonClient;
 import org.vaadin.example.model.Person;
-import org.vaadin.example.openfeign.PersonClient;
+import org.vaadin.example.view.BasicLayout;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.UI;
@@ -27,8 +28,8 @@ import lombok.SneakyThrows;
 import lombok.val;
 
 @PageTitle("Raspberry Pi Board Information")
-@Route(value = "/app", layout = BaseLayout.class)
-@RouteAlias(value = "", layout = BaseLayout.class)
+@Route(value = "/app", layout = BasicLayout.class)
+@RouteAlias(value = "", layout = BasicLayout.class)
 public class MainView extends VerticalLayout {
 
 	TextField t = new TextField();

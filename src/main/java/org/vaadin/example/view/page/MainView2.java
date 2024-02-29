@@ -1,11 +1,12 @@
-package org.vaadin.example.view;
+package org.vaadin.example.view.page;
 
 import java.io.InputStream;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.vaadin.example.client.PersonClient;
 import org.vaadin.example.model.Person;
-import org.vaadin.example.openfeign.PersonClient;
+import org.vaadin.example.view.BasicLayout;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.UI;
@@ -27,8 +28,8 @@ import lombok.SneakyThrows;
 import lombok.val;
 
 @SuppressWarnings("serial")
-@Route(value = "/data", layout = BaseLayout.class)
-@RouteAlias(value = "/data", layout = BaseLayout.class)
+@Route(value = "/data", layout = BasicLayout.class)
+@RouteAlias(value = "/data", layout = BasicLayout.class)
 public class MainView2 extends VerticalLayout {
 
 	TextField t = new TextField();
