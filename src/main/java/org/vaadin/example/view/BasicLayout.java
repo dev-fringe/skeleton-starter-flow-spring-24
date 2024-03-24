@@ -1,5 +1,5 @@
 package org.vaadin.example.view;
-
+ 
 import org.vaadin.example.view.page.MainView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
